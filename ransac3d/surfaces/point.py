@@ -1,5 +1,5 @@
 import numpy as np
-from abstract_surface import SurfaceModel
+from ransac3d.abstract_surface import SurfaceModel
 from numpy.typing import NDArray
 from copy import deepcopy
 
@@ -8,9 +8,9 @@ class Point3D(SurfaceModel):
         super().__init__()
         self.k = 1
         self._model = {
-            'x' : np.NaN,
-            'y' : np.NaN,
-            'z' : np.NaN
+            'x' : np.nan,
+            'y' : np.nan,
+            'z' : np.nan
         }
 
     def fit_model(

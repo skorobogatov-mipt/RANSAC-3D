@@ -1,8 +1,7 @@
 import numpy as np
 from numpy.typing import NDArray
-from abstract_surface import SurfaceModel
+from ransac3d.abstract_surface import SurfaceModel
 from copy import deepcopy
-
 
 class RANSAC3D:
     def __init__(self) -> None:
@@ -26,12 +25,12 @@ class RANSAC3D:
             self, 
             object_type:type,
             iter_num:int,
-            score_threshold:int
+            distance_threshold:float
         ):
-        self.__score_threshold = score_threshold
+        self.__distance_threshold = distance_threshold
         self.model:SurfaceModel = object_type()
         
-        best_model:SurfaceModel|None = None
+        best_model:SurfaceModel = None
         best_model_score = -1
 
         for _ in range(iter_num):
@@ -49,7 +48,7 @@ class RANSAC3D:
             self,
             distances:NDArray
             ) -> float:
-        scores = (distances <= self.__score_threshold)
+        scores = (distances <= self.__distance_threshold)
         return np.sum(scores)
 
     def __sample(
