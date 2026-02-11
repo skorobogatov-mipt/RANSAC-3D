@@ -6,29 +6,35 @@ from copy import deepcopy
 class AbstractSurfaceModel(ABC):
     def __init__(self) -> None:
         super().__init__()
-        self.k = None
-        self._model:dict = {}
+
+    @property
+    def num_samples(self) -> int:
+        return -1
+
+    @property
+    def _model(self) -> dict:
+        return {}
 
     @abstractmethod
     def fit_model(
             self,
             points:NDArray
             ):
-        assert len(points) == self.k
+        assert len(points) == self.num_samples
 
     @abstractmethod
     def calc_distances(
             self,
             points:NDArray
             ) -> NDArray:
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def calc_distance_one_point(
             self, 
             point:NDArray
             ):
-        pass
+        raise NotImplementedError
 
     def __repr__(self):
         result = ''
