@@ -3,7 +3,6 @@ import pytest
 from ransac3d.ransac_3d import RANSAC3D
 from ransac3d.surfaces.point import Point3D
 import numpy as np
-from matplotlib import pyplot as plt
 
 N_POINTS = 1000
 
