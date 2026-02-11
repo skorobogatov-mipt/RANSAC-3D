@@ -6,30 +6,30 @@ from copy import deepcopy
 class Point3D(AbstractSurfaceModel):
     def __init__(self) -> None:
         super().__init__()
-        self.k = 1
-        self._model = {
+        self.model = {
             'x' : np.nan,
             'y' : np.nan,
             'z' : np.nan
         }
+        self.num_samples = 1
 
     def fit_model(
             self,
             points:NDArray
             ):
-        assert len(points) == self.k
-        self._model['x'] = points[0][0]
-        self._model['y'] = points[0][1]
-        self._model['z'] = points[0][2]
+        assert len(points) == self.num_samples
+        self.model['x'] = points[0][0]
+        self.model['y'] = points[0][1]
+        self.model['z'] = points[0][2]
 
     def calc_distances(
             self,
             points:NDArray
             ) -> NDArray:
         center_point = np.array([
-            self._model['x'], 
-            self._model['y'], 
-            self._model['z']
+            self.model['x'], 
+            self.model['y'], 
+            self.model['z']
         ])
 
         diff_vectors = points - center_point
@@ -40,5 +40,5 @@ class Point3D(AbstractSurfaceModel):
         return distances
 
     def calc_distance_one_point(self, point: NDArray):
-        pass
+        return 0.
 

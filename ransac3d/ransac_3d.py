@@ -99,18 +99,20 @@ class RANSAC3D:
             self,
             distances: NDArray
             ) -> float:
-        """Calculate the inlier score from point-to-surface distances.
-        
-        Parameters
-        ----------
-        distances : NDArray
-            Array of distances from each point to the fitted surface.
-            
-        Returns
-        -------
-        score : float
-            The number of points within the distance threshold (inlier count).
         """
+            Calculate the inlier score from point-to-surface distances.
+            
+            Parameters
+            ----------
+            distances : NDArray
+                Array of distances from each point to the fitted surface.
+                
+            Returns
+            -------
+            score : float
+                The number of points within the distance threshold (inlier count).
+        """
+
         scores = (distances <= self.__distance_threshold)
         return np.sum(scores)
 
