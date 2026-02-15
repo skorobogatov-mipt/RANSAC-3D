@@ -1,3 +1,6 @@
+# Point3D
+This class represents a point in 3D space.
+
 # Model parameters
 ## x
 This parameter represents the x coordinate of the point.
